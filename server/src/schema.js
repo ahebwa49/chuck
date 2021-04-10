@@ -10,6 +10,7 @@ const typeDefs = gql`
   }
   type Query {
     categories: [String]
+    joke(category: String): Joke
   }
 `;
 module.exports = typeDefs;

@@ -1,8 +1,14 @@
 const { ApolloServer } = require("apollo-server");
 const typeDefs = require("./schema");
+const resolvers = require("./resolvers");
+const chucknorrisAPI = require("./datasources/chucknorris");
 
 const server = new ApolloServer({
   typeDefs,
+  resolvers,
+  dataSources: () => ({
+    chucknorrisAPI: new chucknorrisAPI(),
+  }),
 });
 
 server.listen().then(() => {
