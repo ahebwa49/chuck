@@ -8,7 +8,6 @@ class chucknorrisAPI extends RESTDataSource {
 
   async getRandomJokeByCategory(category) {
     const response = await this.get(`jokes/random?category=${category}`);
-    console.log(response);
     return this.jokeReducer(response);
   }
 
@@ -32,7 +31,6 @@ class chucknorrisAPI extends RESTDataSource {
   categoriesReducer(category) {
     return category;
   }
- 
 }
 
 module.exports = chucknorrisAPI;

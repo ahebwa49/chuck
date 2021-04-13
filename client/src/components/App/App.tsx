@@ -1,3 +1,4 @@
+import { FC } from 'react';
 import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
 import logo from '../../images/chucknorris.png';
 import Categories from '../Categories/Categories';
@@ -8,7 +9,7 @@ const client = new ApolloClient({
   cache: new InMemoryCache(),
 });
 
-const App = () => {
+const App: FC = () => {
   return (
     <ApolloProvider client={client}>
       <div className="App">

@@ -3,12 +3,15 @@ const typeDefs = require("./schema");
 const resolvers = require("./resolvers");
 const chucknorrisAPI = require("./datasources/chucknorris");
 
+// set up any dataSources our resolvers need
+const dataSources = () => ({
+  chucknorrisAPI: new chucknorrisAPI(),
+});
+
 const server = new ApolloServer({
   typeDefs,
   resolvers,
-  dataSources: () => ({
-    chucknorrisAPI: new chucknorrisAPI(),
-  }),
+  dataSources,
 });
 
 server.listen().then(() => {
@@ -20,3 +23,13 @@ server.listen().then(() => {
     `
   );
 });
+
+// export all the important pieces for integration/e2e tests to use
+module.exports = {
+  dataSources,
+  typeDefs,
+  resolvers,
+  ApolloServer,
+  chucknorrisAPI,
+  server,
+};
